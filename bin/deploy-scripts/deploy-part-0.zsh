@@ -36,7 +36,6 @@ report_done
 report_progress 'Clone hqconfig repository for server configuration'
     rm -rf ~/.hqconfig
     git clone git@github.com:wordswords/hqconfig.git ~/.hqconfig
-    ln -s ~/.hqconfig ~/.vworkbench/hqconfig
 report_done
 # Backup and clean
 report_progress 'Backing up existing vworkbench to ~/.oldvworkbench'
