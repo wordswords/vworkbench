@@ -22,7 +22,7 @@ if [[ ! -d ~/.vworkbench/SECRETS ]] ; then
     echo "SECRETS directory does not exist.  Please create it and put your secrets in it. Running config tool:"
     /opt/vworkbench/bin/user-scripts/setup-secrets-dir.sh
 fi
-source ~/.vworkbench/SECRETS/vimz_config.sh
+source ~/.dotfiles/SECRETS/vimz_config.sh
 report_done
 report_progress 'Creating ~/.secure directory'
     mkdir -p ~/.secure
