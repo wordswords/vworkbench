@@ -45,7 +45,6 @@ report_done
 report_progress 'Setting up config'
 mkdir -p ~/.dotfiles/.vim
 cp -rf /opt/vworkbench/config/dotfiles/.vim ~/.vim | true
-cp -f /opt/vworkbench/config/dotfiles/.bash_aliases ~/.bash_aliases
 cp -f /opt/vworkbench/config/dotfiles/.zsh_aliases ~/.zsh_aliases
 cp -f /opt/vworkbench/config/dotfiles/.bash_profile ~/.bash_profile
 cp -f /opt/vworkbench/config/dotfiles/.bash_profile_remote ~/.bash_profile_remote
