@@ -28,7 +28,7 @@ report_progress 'Creating ~/.secure directory'
     mkdir -p ~/.secure
 report_done
 report_progress 'Ensure home directory permissions are set securely'
-   ~/.vworkbench/bin/user-scripts/secure-home-dir-perms.sh
+   /opt/vworkbench/binuser-scripts/secure-home-dir-perms.sh
 report_done
 report_progress 'Install Git'
     sudo apt-get install git -y
