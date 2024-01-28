@@ -13,22 +13,22 @@ export PIP_BREAK_SYSTEM_PACKAGES=1
 report_progress 'Checking locale'
      locale | grep -q LANG=en_GB.UTF-8 || ( echo 'en_GB.UTF-8 is not set as the locale. You need to fix this before proceeding.' && exit 1 )
 report_done
-report_progress 'Restoring last modified dates for .dotfiles'
+report_progress 'Restoring last modified dates for .vworkbench'
     sudo apt-get install git-restore-mtime
     sudo git restore-mtime
 report_done
 report_progress 'Checking for existence of SECRETS directory'
-if [[ ! -d ~/.dotfiles/SECRETS ]] ; then
+if [[ ! -d ~/.vworkbench/SECRETS ]] ; then
     echo "SECRETS directory does not exist.  Please create it and put your secrets in it. Running config tool:"
-    ~/.dotfiles/bin/setup-secrets-dir.sh
+    /opt/vworkbench/bin/user-scripts/setup-secrets-dir.sh
 fi
-source ~/.dotfiles/SECRETS/vimz_config.sh
+source ~/.vworkbench/SECRETS/vimz_config.sh
 report_done
 report_progress 'Creating ~/.secure directory'
     mkdir -p ~/.secure
 report_done
 report_progress 'Ensure home directory permissions are set securely'
-   ~/.dotfiles/bin/secure-home-dir-perms.sh
+   ~/.vworkbench/bin/user-scripts/secure-home-dir-perms.sh
 report_done
 report_progress 'Install Git'
     sudo apt-get install git -y
@@ -36,20 +36,20 @@ report_done
 report_progress 'Clone hqconfig repository for server configuration'
     rm -rf ~/.hqconfig
     git clone git@github.com:wordswords/hqconfig.git ~/.hqconfig
-    ln -s ~/.hqconfig ~/.dotfiles/hqconfig
+    ln -s ~/.hqconfig ~/.vworkbench/hqconfig
 report_done
 # Backup and clean
-report_progress 'Backing up existing dotfiles to ~/.olddotfiles'
-    rm -rf ~/.olddotfiles
-    mkdir -p ~/.olddotfiles
+report_progress 'Backing up existing vworkbench to ~/.oldvworkbench'
+    rm -rf ~/.oldvworkbench
+    mkdir -p ~/.oldvworkbench
 
-    cp -RL ~/.vim ~/.olddotfiles/.vim || echo "INFO: Could not backup .vim dir, does it exist?"
-    cp -RL ~/.zsh* ~/.olddotfiles/ || echo "INFO: Could not backup .zsh*, do they exist?"
-    cp -RL ~/.bash* ~/.olddotfiles/ || echo "INFO: Could not backup .bash*, do they exist?"
-    cp -RL ~/.oh-my-zsh ~/.olddotfiles/ || echo "INFO: Could not backup .oh-my-zsh directory, does it exist?"
-    cp -L ~/.bash_aliases ~/.olddotfiles/.bash_aliases || echo "INFO: Could not backup .bash_aliases, does it exist?"
-    cp -L ~/.bash_profile ~/.olddotfiles/.bash_profile || echo "INFO: Could not backup .bash_profile, does it exist?"
-    cp -L ~/.vimrc ~/.olddotfiles/.vimrc || echo "INFO: Could not backup .vimrc, does it exist?"
+    cp -RL ~/.vim ~/.oldvworkbench/.vim || echo "INFO: Could not backup .vim dir, does it exist?"
+    cp -RL ~/.zsh* ~/.oldvworkbench/ || echo "INFO: Could not backup .zsh*, do they exist?"
+    cp -RL ~/.bash* ~/.oldvworkbench/ || echo "INFO: Could not backup .bash*, do they exist?"
+    cp -RL ~/.oh-my-zsh ~/.oldvworkbench/ || echo "INFO: Could not backup .oh-my-zsh directory, does it exist?"
+    cp -L ~/.bash_aliases ~/.oldvworkbench/.bash_aliases || echo "INFO: Could not backup .bash_aliases, does it exist?"
+    cp -L ~/.bash_profile ~/.oldvworkbench/.bash_profile || echo "INFO: Could not backup .bash_profile, does it exist?"
+    cp -L ~/.vimrc ~/.oldvworkbench/.vimrc || echo "INFO: Could not backup .vimrc, does it exist?"
 report_done
 report_progress 'Removing existing zsh config'
     rm -f ~/.zshrc
@@ -72,7 +72,7 @@ report_progress 'Check for Ubuntu release upgrade'
 report_done
 report_progress 'Download compile and install VIM9 on Ubuntu'
     sudo apt install libncurses-dev -y
-    ~/.dotfiles/bin/make-and-install-vim.sh 9.1.0
+    /opt/vworkbench/bin/user-scripts/make-and-install-vim.sh 9.1.0
 report_done
 report_progress 'Install Python used for vim plugins'
     sudo apt-get install python3 -y
@@ -150,7 +150,7 @@ report_progress 'Nuke current node install'
     sudo rm -f /usr/local/bin/nodejs
 report_done
 report_progress 'Installing node'
-    ~/.dotfiles/bin/install-node.sh 20
+    /opt/vworkbench/bin/user-scripts/install-node.sh 20
     sudo chown -R root:users /usr/lib/node_modules
     sudo chmod -R 775 /usr/lib/node_modules
 report_done
@@ -170,7 +170,7 @@ report_progress 'Install jq'
     sudo apt install jq -y
 report_done
 report_progress 'Install Manchester Metrolink Commandline App for Tram times'
-    cd ~/.dotfiles/bin
+    cd /opt/vworkbench/bin/user-scripts
     wget https://github.com/ayubmalik/trams/releases/download/v1.2.0/trams-linux-amd64
     mv trams-linux-amd64 trams
     chmod u+x trams
@@ -235,7 +235,7 @@ if [[ ${cur_os} == 'windows' ]];
 then
     report_progress 'Copying alacritty terminal emulator config to windows profile location for Windows user conta.. change if this is not your windows username'
         sudo mkdir -p /mnt/c/Users/conta/AppData/Roaming/alacritty
-        sudo cp ~/.dotfiles/windows-terminal-emulators-config/windows-alacritty.yml  /mnt/c/Users/conta/AppData/Roaming/alacritty/alacritty.yml
+        sudo cp /opt/vworkbench/config/extconfig/windows-terminal-emulators-config/windows-alacritty.yml  /mnt/c/Users/conta/AppData/Roaming/alacritty/alacritty.yml
     report_done
 fi
 report_progress 'We will now attempt to enable automated unattended-upgrades'
