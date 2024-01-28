@@ -43,7 +43,6 @@ mkdir -p ~/bin
 cp -furs /opt/vworkbench/bin/user-scripts/ ~/bin/
 report_done
 report_progress 'Setting up config'
-cp /opt/
 mkdir -p ~/.dotfiles/.vim
 cp -rf /opt/vworkbench/config/dotfiles/.vim ~/.vim
 cp -f /opt/vworkbench/config/dotfiles/.bash_aliases ~/.bash_aliases
