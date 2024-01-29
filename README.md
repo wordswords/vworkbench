@@ -1,4 +1,4 @@
-# My Development Enviroment (dotfiles)
+# vworkbench
 
 "Every woodworker needs a good, solid, reliable workbench, somewhere to
 hold work pieces at a convenient height while they're being shaped.
