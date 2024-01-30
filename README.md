@@ -12,6 +12,10 @@ is the command shell."
 
 ![Alt text](workbench.jpg "Picture of a woodworker workbench")
 
+## Current Status
+
+Not ready to be used.
+
 <!--ts-->
 * [My Development Enviroment (dotfiles)](#my-development-enviroment-dotfiles)
    * [What Is This](#what-is-this)
